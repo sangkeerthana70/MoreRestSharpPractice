@@ -17,7 +17,7 @@ namespace MoreRestSharpPractice
             var client = new RestClient("https://api.openweathermap.org/data/2.5");
             //var client = new RestClient("https://samples.openweathermap.org/data/2.5");
                   // create a new request
-            var request = new RestRequest("/weather?zip=02184,us&appid=43cad6fe6ff5fda2c29ec2fb584ab717");
+            var request = new RestRequest("/weather?zip=02184,us&appid=");
 
             // execute the request
             IRestResponse response = client.Execute(request);
