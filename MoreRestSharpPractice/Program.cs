@@ -29,8 +29,10 @@ namespace MoreRestSharpPractice
             //Console.WriteLine("String a: " + a);
 
             //Deserialize will convert the raw string into Json format
+            // Take the Json and convert it into a Csharp Object
             Weather w = JsonConvert.DeserializeObject<Weather>(content);
             Console.WriteLine("name:" + w.name);
+            //access the Dictionary through its key:value
             Console.WriteLine("temp:" + w.main["temp"]);
             Console.WriteLine("pressure:" + w.main["pressure"]);
             Console.WriteLine("humidity:" + w.main["humidity"]);
