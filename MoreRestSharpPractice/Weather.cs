@@ -14,5 +14,7 @@ namespace MoreRestSharpPractice
         public int visibility { get; set; }
         public Dictionary<string,float> wind { get; set; }
         public List<Dictionary<string,string>> weather { get; set; }
+
+        
     }
 }
