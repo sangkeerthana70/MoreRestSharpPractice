@@ -13,27 +13,35 @@ namespace MoreRestSharpPractice
     {
         static void Main(string[] args)
         {
+            /*var client = new RestClient("https://api.openweathermap.org/data/2.5");*/
             var client = new RestClient("https://samples.openweathermap.org/data/2.5");
-
-            // create a new request
-            var request = new RestRequest("/weather?zip=02093,us&appid=b6907d289e10d714a6e88b30761fae22");
+                  // create a new request
+            var request = new RestRequest("/weather?zip=02184,us&appid=");
 
             // execute the request
             IRestResponse response = client.Execute(request);
             var content = response.Content; // raw content as string
-            Console.WriteLine("Content : " + content);
+            Console.WriteLine("Content: " + content);
 
             // parses a JSON array from a string using JArray.Parse(String).
             //JArray a = JArray.Parse(content);
 
             //Console.WriteLine("String a: " + a);
 
-
             //Deserialize will convert the raw string into Json format
-            var output = JsonConvert.DeserializeObject(content);
-            Console.WriteLine("Output: " + output);
+            Weather w = JsonConvert.DeserializeObject<Weather>(content);
+            Console.WriteLine("name:" + w.name);
+            Console.WriteLine("temp:" + w.main["temp"]);
+            Console.WriteLine("pressure:" + w.main["pressure"]);
+            Console.WriteLine("humidity:" + w.main["humidity"]);
+            Console.WriteLine("visibility:" + w.visibility);
+            Console.WriteLine("wind speed:" + w.wind["speed"]);
+            Console.WriteLine("description:" + w.weather[0]["description"]);
 
-            
+            float temp = w.main["temp"];
+
+
+
         }
     }
 }
