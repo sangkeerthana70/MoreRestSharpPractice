@@ -57,10 +57,12 @@ namespace MoreRestSharpPractice
             using (SqlConnection connection = new SqlConnection(connstring))
             {
                 connection.Open();
-                SqlCommand insCommand = new SqlCommand("INSERT INTO [Weather] (location, temp, tempF, tempC, humidity, visibility, pressure, wind, description) VALUES(@location, @temp, @tempF, @tempC, @humidity, @visibility, @pressure, @pressure, @wind, @description)", connection);
+                SqlCommand insCommand = new SqlCommand("INSERT INTO [Weather] (location, temp, tempF, tempC, humidity, visibility, pressure, wind, description) VALUES(@location, @temp, @tempF, @tempC, @humidity, @visibility, @pressure, @wind, @description)", connection);
                 
                 insCommand.Parameters.AddWithValue("@location", name);
                 insCommand.Parameters.AddWithValue("@temp", temp);
+                insCommand.Parameters.AddWithValue("@tempF", temp);
+                insCommand.Parameters.AddWithValue("@tempC", temp);
                 insCommand.Parameters.AddWithValue("@humidity", humidity);
                 insCommand.Parameters.AddWithValue("@visibility", visibility);
                 insCommand.Parameters.AddWithValue("@pressure", pressure);
