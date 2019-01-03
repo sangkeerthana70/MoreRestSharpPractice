@@ -15,8 +15,8 @@ namespace MoreRestSharpPractice
         static void Main(string[] args)
         {
             var client = new RestClient("https://api.openweathermap.org/data/2.5");
-            //var client = new RestClient("https://samples.openweathermap.org/data/2.5");
-                  // create a new request
+            
+            // create a new request
             var request = new RestRequest("/weather?zip=02184,us&appid=");
 
             // execute the request
@@ -24,18 +24,12 @@ namespace MoreRestSharpPractice
             var content = response.Content; // raw content as string
             Console.WriteLine("Content: " + content);
 
-            // parses a JSON array from a string using JArray.Parse(String).
-            //JArray a = JArray.Parse(content);
-
-            //Console.WriteLine("String a: " + a);
-
             //Deserialize will convert the raw string into Json format
             // Take the Json and convert it into a Csharp Object
             Weather w = JsonConvert.DeserializeObject<Weather>(content);
             
 
-            string name = w.name;
-            
+            string name = w.name;           
             float temp = w.main["temp"];
             float pressure = w.main["pressure"];
             float humidity = w.main["humidity"];
