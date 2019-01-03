@@ -52,13 +52,13 @@ namespace MoreRestSharpPractice
             Console.WriteLine("wind speed:" + speed);
             Console.WriteLine("description:" + description);
 
-            var connstring = @"Data Source = Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=MoreRestSharpPractice;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+            var connstring = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=MoreRestSharpPractice;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
 
             using (SqlConnection connection = new SqlConnection(connstring))
             {
                 connection.Open();
-                SqlCommand insCommand = new SqlCommand("INSERT INTO [Weather] (Id, location, temp, tempF, tempC, humidity, visibility, pressure, wind, description) VALUES(@Id, @location, @temp, @tempF, @tempC, @humidity, @visibility, @pressure, @pressure, @wind, @description)", connection);
-                insCommand.Parameters.AddWithValue("@Id", "Id");
+                SqlCommand insCommand = new SqlCommand("INSERT INTO [Weather] (location, temp, tempF, tempC, humidity, visibility, pressure, wind, description) VALUES(@location, @temp, @tempF, @tempC, @humidity, @visibility, @pressure, @pressure, @wind, @description)", connection);
+                
                 insCommand.Parameters.AddWithValue("@location", name);
                 insCommand.Parameters.AddWithValue("@temp", temp);
                 insCommand.Parameters.AddWithValue("@humidity", humidity);
@@ -66,8 +66,13 @@ namespace MoreRestSharpPractice
                 insCommand.Parameters.AddWithValue("@pressure", pressure);
                 insCommand.Parameters.AddWithValue("@wind", speed);
                 insCommand.Parameters.AddWithValue("@description", description);
+
+                insCommand.ExecuteNonQuery();
+                Console.WriteLine("DB updated");
+                connection.Close();
             }
-                
+            
+
 
 
 
