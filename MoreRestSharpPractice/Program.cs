@@ -17,7 +17,7 @@ namespace MoreRestSharpPractice
             var client = new RestClient("https://api.openweathermap.org/data/2.5");
             
             // create a new request
-            var request = new RestRequest("/weather?zip=02184,us&appid=");
+            var request = new RestRequest("/weather?zip=02184,us&appid=43cad6fe6ff5fda2c29ec2fb584ab717");
 
             // execute the request
             IRestResponse response = client.Execute(request);
@@ -36,6 +36,9 @@ namespace MoreRestSharpPractice
             int visibility = w.visibility;
             float speed = w.wind["speed"];
             string description = w.weather[0]["description"];
+
+            float tempC = temp - float.Parse("273.15");
+            Console.WriteLine(tempC);
 
             Console.WriteLine("name:" + name);
             //access the Dictionary through its key:value
